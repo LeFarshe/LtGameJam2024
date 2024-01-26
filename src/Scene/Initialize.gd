@@ -25,7 +25,7 @@ func _process(delta):
 	pass
 	
 func createCharacter(startPermanentTraits, extraPermAmount, startTemporaryTraits, extraTempAmount):
-	return Character.new(startPermanentTraits + generateTraits(extraPermAmount, permTraits, permWeights),
+	return CharacterLogic.new(startPermanentTraits + generateTraits(extraPermAmount, permTraits, permWeights),
 	 startTemporaryTraits + generateTraits(extraTempAmount, tempTraits, tempWeights))
 	
 func generateTraits(amount, traitList, weights):
