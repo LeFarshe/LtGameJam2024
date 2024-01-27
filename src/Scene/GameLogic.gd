@@ -58,6 +58,7 @@ func nextDay():
 		nextWeek()
 	characters.shuffle()
 	resetMoods()
+	get_tree().change_scene_to_file("res://Scene/JokeSelection/RepStore.tscn")
 	
 func nextWeek():
 	if player.earnedReputation < quota:

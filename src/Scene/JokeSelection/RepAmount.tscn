@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxmimg1e1l400"]
+
+[ext_resource type="PackedScene" uid="uid://tu1y82f7f3il" path="res://Scene/JokeSelection/Note.tscn" id="1_mivhm"]
+[ext_resource type="Theme" uid="uid://c6g8bwrd6ycst" path="res://DefaultTheme.tres" id="2_bekye"]
+
+[sub_resource type="GDScript" id="GDScript_14dtr"]
+script/source = "extends Node2D
+
+@onready var amountLabel = $AmountLabel
+
+func _ready():
+	updateLabel()
+	
+func updateLabel():
+	amountLabel.text = str(GameLogic.player.spendableReputation)
+
+
+"
+
+[node name="RepAmount" type="Node2D" groups=["ReputationAmount"]]
+script = SubResource("GDScript_14dtr")
+
+[node name="Note" parent="." instance=ExtResource("1_mivhm")]
+
+[node name="ToSpend" type="Label" parent="."]
+offset_left = -22.5
+offset_top = -11.0
+offset_right = 24.5
+offset_bottom = 12.0
+rotation = -0.0872665
+theme = ExtResource("2_bekye")
+theme_override_colors/font_color = Color(0.521569, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "To spend:"
+metadata/_edit_use_anchors_ = true
+
+[node name="AmountLabel" type="Label" parent="."]
+offset_left = -19.0
+offset_top = -1.0
+offset_right = 21.0
+offset_bottom = 22.0
+rotation = 0.0872665
+theme = ExtResource("2_bekye")
+theme_override_colors/font_color = Color(0.521569, 0, 0, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true

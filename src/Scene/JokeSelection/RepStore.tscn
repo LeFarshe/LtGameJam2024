@@ -1,10 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctn2i3eklcl2s"]
+[gd_scene load_steps=8 format=3 uid="uid://ctn2i3eklcl2s"]
 
 [ext_resource type="Texture2D" uid="uid://ct5skwvqnfwso" path="res://Scene/JokeSelection/Rep_store.png" id="1_ef15j"]
 [ext_resource type="PackedScene" uid="uid://dwjfrdmnn1m84" path="res://Scene/JokeSelection/JokeSelect.tscn" id="2_cm8dx"]
 [ext_resource type="PackedScene" uid="uid://tu1y82f7f3il" path="res://Scene/JokeSelection/Note.tscn" id="3_de125"]
 [ext_resource type="Theme" uid="uid://c6g8bwrd6ycst" path="res://DefaultTheme.tres" id="4_hfyq2"]
 [ext_resource type="FontFile" uid="uid://bodhipwvbjhr7" path="res://Style/OpenSans-Medium.ttf" id="5_ls4ev"]
+[ext_resource type="PackedScene" uid="uid://dxmimg1e1l400" path="res://Scene/JokeSelection/RepAmount.tscn" id="6_o58fx"]
+
+[sub_resource type="GDScript" id="GDScript_62uv6"]
+script/source = "extends Button
+
+
+func _pressed():
+	get_tree().change_scene_to_file(\"res://Scene/JokeBattle/Battle.tscn\")
+"
 
 [node name="RepStore" type="Node2D"]
 
@@ -24,7 +33,6 @@ position = Vector2(440, 360)
 rotation = -0.141372
 scale = Vector2(2, 2)
 jokeTitle = "Puns"
-joke = 0
 
 [node name="Sarcasm" parent="." instance=ExtResource("2_cm8dx")]
 position = Vector2(672, 352)
@@ -85,5 +93,11 @@ theme = ExtResource("4_hfyq2")
 theme_type_variation = &"FlatButton"
 theme_override_fonts/font = ExtResource("5_ls4ev")
 theme_override_font_sizes/font_size = 12
+action_mode = 0
 text = "break
 time"
+script = SubResource("GDScript_62uv6")
+
+[node name="RepAmount" parent="." instance=ExtResource("6_o58fx")]
+position = Vector2(244, 117)
+scale = Vector2(2, 2)

@@ -9,6 +9,7 @@ func resetPlayer():
 	earnedReputation = 0
 	for i in Jokes.JokeTypes.keys():
 		heldJokes[Jokes.JokeTypes[i]] = 0
+	heldJokes[Jokes.JokeTypes.PUN] = 2
 		
 func changeRep(rep):
 	spendableReputation += rep
