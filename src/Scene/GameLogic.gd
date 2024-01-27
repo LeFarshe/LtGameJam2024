@@ -5,6 +5,7 @@ const earningInflation = 1.03
 
 const startQuota = 214
 const quotaInflation = 1.5
+const startRep = 11
 var quota = 0
 
 const charsPerDay = 6
@@ -31,6 +32,7 @@ func resetGame():
 	week = 1
 	quota = startQuota
 	player.resetPlayer()
+	player.spendRep(-startRep)
 	characters = []
 	
 	for i in range(characterAmount):
@@ -56,6 +58,7 @@ func nextDay():
 		nextWeek()
 	characters.shuffle()
 	resetMoods()
+	get_tree().change_scene_to_file("res://Scene/JokeSelection/RepStore.tscn")
 	
 func nextWeek():
 	if player.earnedReputation < quota:
@@ -79,6 +82,11 @@ func endGame():
 	
 func changePlayerRep(rep):
 	player.changeRep(rep)
+	
+func canBuy(joke):
+	if player.spendableReputation >= Jokes.getPrice(joke):
+		return true
+	return false
 
 
 
