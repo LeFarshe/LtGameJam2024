@@ -53,16 +53,19 @@ func resetMoods():
 func nextDay():
 	day += 1
 	earningMultiplier *= earningInflation
+	var ended = false
 	if day == 6:
 		day = 1
-		nextWeek()
-	characters.shuffle()
-	resetMoods()
-	get_tree().change_scene_to_file("res://Scene/JokeSelection/RepStore.tscn")
+		ended = nextWeek()
+	if not ended:
+		characters.shuffle()
+		resetMoods()
+		get_tree().change_scene_to_file("res://Scene/JokeSelection/RepStore.tscn")
 	
 func nextWeek():
 	if player.earnedReputation < quota:
 		endGame()
+		return true
 	else:
 		week += 1
 		player.earnedReputation = 0
@@ -70,6 +73,7 @@ func nextWeek():
 		for i in characters:
 			i.nextWeek()
 		newWeekCharacters()
+		return false
 		
 func newWeekCharacters():
 	var newCharAmount = randi() % (newCharMax - newCharMin + 1) + newCharMin
@@ -78,7 +82,7 @@ func newWeekCharacters():
 		characters[i] = createCharacter()
 	
 func endGame():
-	pass
+	get_tree().change_scene_to_file("res://Scene/menu_page.tscn")
 	
 func changePlayerRep(rep):
 	player.changeRep(rep)

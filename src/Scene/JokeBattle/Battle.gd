@@ -1,5 +1,7 @@
 extends Control
 
+@onready var traitList = $TraitList
+
 const runRepLoss = 3
 
 var currentCharacter
@@ -12,6 +14,7 @@ func _ready():
 	interactionCount = 0
 	totalCharacters = 10
 	totalInteractions = GameLogic.charsPerDay
+	traitList.loadCharacter(GameLogic.characters[currentCharacter])
 	
 func end():
 	GameLogic.nextDay()
@@ -28,6 +31,7 @@ func nextCharacter():
 	currentCharacter += 1
 	if currentCharacter >= totalCharacters:
 		end()
+	traitList.loadCharacter(GameLogic.characters[currentCharacter])
 	
 func runFromCharacter():
 	GameLogic.characters[currentCharacter].changeReputation(-runRepLoss)
