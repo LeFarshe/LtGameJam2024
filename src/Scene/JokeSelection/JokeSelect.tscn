@@ -1,12 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwjfrdmnn1m84"]
+[gd_scene load_steps=4 format=3 uid="uid://dwjfrdmnn1m84"]
 
+[ext_resource type="PackedScene" uid="uid://tu1y82f7f3il" path="res://Scene/JokeSelection/Note.tscn" id="1_rm5xe"]
 [ext_resource type="Theme" uid="uid://c6g8bwrd6ycst" path="res://DefaultTheme.tres" id="2_31gqt"]
 
 [sub_resource type="GDScript" id="GDScript_1qswr"]
 script/source = "extends Node2D
 
 @export var jokeTitle: String
-@export var jokePrice: int
+@export var joke: Jokes.JokeTypes
 
 @onready var joke_type = $div/JokeType
 @onready var joke_price = $div/JokePrice
@@ -23,9 +24,13 @@ const jokePileCap = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	add_child(getNote(jokeCount))
 	joke_type.text = jokeTitle
+	if len(jokeTitle) > 12:
+		joke_type.add_theme_font_size_override(\"font_size\", 8.5)
+	elif len(jokeTitle) > 7:
+		joke_type.add_theme_font_size_override(\"font_size\", 10)
 	joke_type.rotation = randf_range(-0.2, 0.2)
+	var jokePrice = Jokes.getPrice(joke)
 	if jokePrice == 0:
 		joke_price.text = \"free\"
 	else:
@@ -60,8 +65,8 @@ func getNote(noteInList):
 
 [node name="JokeSelect" type="Node2D"]
 script = SubResource("GDScript_1qswr")
-jokeTitle = "Sarcasm"
-jokePrice = 200
+
+[node name="Note" parent="." instance=ExtResource("1_rm5xe")]
 
 [node name="div" type="Node2D" parent="."]
 z_index = 1
@@ -73,15 +78,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -8.5
-offset_right = 20.0
-offset_bottom = 8.5
+offset_left = -25.0
+offset_top = -11.0
+offset_right = 27.0
+offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(21, 9.5)
 theme = ExtResource("2_31gqt")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -5
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="JokePrice" type="Label" parent="div"]
 anchors_preset = 8
@@ -91,7 +99,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -18.0
 offset_top = -27.0
-offset_right = 22.0
+offset_right = 21.0
 offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2

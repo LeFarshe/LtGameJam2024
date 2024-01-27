@@ -1,11 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6tmi1aowgx5b"]
+[gd_scene load_steps=2 format=3 uid="uid://c6tmi1aowgx5b"]
 
 [ext_resource type="Script" path="res://Scene/GameLogic.gd" id="1_4lxtt"]
-[ext_resource type="PackedScene" uid="uid://dwjfrdmnn1m84" path="res://Scene/JokeSelection/JokeSelect.tscn" id="2_55kxn"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_4lxtt")
-
-[node name="JokeSelect" parent="." instance=ExtResource("2_55kxn")]
-position = Vector2(165, 136)
-scale = Vector2(2, 2)
