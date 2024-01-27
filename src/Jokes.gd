@@ -19,6 +19,28 @@ static func getDefaultReaction(joke):
 			ans = [1.5,3]
 		JokeTypes.BAD:
 			ans = [0.5,2]
+	return ans
 
 static func getPrice(joke):
 	return 1
+	
+static func getName(joke):
+	var ans
+	match joke:
+		JokeTypes.PUN:
+			ans = "puns"
+		JokeTypes.SARCASM:
+			ans = "sarcasm"
+		JokeTypes.SLAPSTICK:
+			ans = "slapstick"
+		JokeTypes.SURREAL:
+			ans = "surreal jokes"
+		JokeTypes.SELFDEPRECATING:
+			ans = "self-deprecation"
+		JokeTypes.OBSERVATIONAL:
+			ans = "observational jokes"
+		JokeTypes.DARK:
+			ans = "dark jokes"
+		JokeTypes.BAD:
+			ans = "bad jokes"
+	return ans
