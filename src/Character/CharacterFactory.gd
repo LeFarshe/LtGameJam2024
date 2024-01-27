@@ -1,6 +1,4 @@
-extends Node2D
-
-var characters = []
+class_name CharacterFactory
 
 var permTraits = [[TraitFactory.Traits.DIFFERENTDEPARTMENT, 3],
  [TraitFactory.Traits.KINDMEAN, 10], [TraitFactory.Traits.INTDUMB, 8],
@@ -14,18 +12,12 @@ var tempTraits = [[TraitFactory.Traits.IRRITATED, 1],
  [TraitFactory.Traits.SAD, 1]]
 var tempWeights = 0
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
+func _init():
 	for i in permTraits:
 		permWeights += i[1]
 	for i in tempTraits:
 		tempWeights += i[1]
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-	
 func createCharacter(startPermanentTraits, extraPermAmount, startTemporaryTraits, extraTempAmount):
 	return CharacterLogic.new(startPermanentTraits + generateTraits(extraPermAmount, permTraits, permWeights),
 	 startTemporaryTraits + generateTraits(extraTempAmount, tempTraits, tempWeights))
