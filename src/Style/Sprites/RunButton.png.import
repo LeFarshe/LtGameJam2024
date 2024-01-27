@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://60lg2knxp4o7"
-path="res://.godot/imported/RunButton.png-d1c81157019654e50c7ccae2337aeb22.ctex"
+path="res://.godot/imported/RunButton.png-84bfc9664cdc32859808e593438c9af2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Style/Resources/RunButton.png"
-dest_files=["res://.godot/imported/RunButton.png-d1c81157019654e50c7ccae2337aeb22.ctex"]
+source_file="res://Style/Sprites/RunButton.png"
+dest_files=["res://.godot/imported/RunButton.png-84bfc9664cdc32859808e593438c9af2.ctex"]
 
 [params]
 
