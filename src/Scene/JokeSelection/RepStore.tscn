@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://tu1y82f7f3il" path="res://Scene/JokeSelection/Note.tscn" id="3_de125"]
 [ext_resource type="Theme" uid="uid://c6g8bwrd6ycst" path="res://DefaultTheme.tres" id="4_hfyq2"]
 [ext_resource type="FontFile" uid="uid://bodhipwvbjhr7" path="res://Style/OpenSans-Medium.ttf" id="5_ls4ev"]
-[ext_resource type="PackedScene" uid="uid://dxmimg1e1l400" path="res://Scene/JokeSelection/RepAmount.tscn" id="6_o58fx"]
+[ext_resource type="PackedScene" path="res://Scene/JokeSelection/RepAmount.tscn" id="6_o58fx"]
 
 [sub_resource type="GDScript" id="GDScript_62uv6"]
 script/source = "extends Button
