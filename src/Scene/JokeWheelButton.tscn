@@ -1,0 +1,105 @@
+[gd_scene load_steps=5 format=3 uid="uid://dt173lrru8f07"]
+
+[ext_resource type="PackedScene" uid="uid://tu1y82f7f3il" path="res://Scene/JokeSelection/Note.tscn" id="1_uxeo3"]
+[ext_resource type="Theme" uid="uid://c6g8bwrd6ycst" path="res://DefaultTheme.tres" id="2_2dlfq"]
+
+[sub_resource type="GDScript" id="GDScript_xa8qe"]
+script/source = "extends Node2D
+
+@export var joke: Jokes.JokeTypes
+@onready var joke_label = $SelectJokeButton/JokeLabel
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	move_local_x(200)
+	move_local_y(200)
+	var text : String
+	match joke:
+		Jokes.JokeTypes.BAD:
+			joke_label.add_theme_font_size_override(\"font_size\", 10)
+			text = \"bad joke\"
+		Jokes.JokeTypes.PUN:
+			text = \"Pun\"
+		Jokes.JokeTypes.SARCASM:
+			joke_label.add_theme_font_size_override(\"font_size\", 10)
+			text = \"Sarcasm\"
+		Jokes.JokeTypes.SLAPSTICK:
+			joke_label.add_theme_font_size_override(\"font_size\", 10)
+			text = \"Slapstick\"
+		Jokes.JokeTypes.SURREAL:
+			text = \"surreal\"
+		Jokes.JokeTypes.SELFDEPRECATING:
+			joke_label.add_theme_font_size_override(\"font_size\", 9)
+			text = \"Self-Deprecation\"
+		Jokes.JokeTypes.OBSERVATIONAL:
+			joke_label.add_theme_font_size_override(\"font_size\", 8)
+			text = \"Observational\"
+		Jokes.JokeTypes.DARK:
+			text = \"Dark\"
+	joke_label.text = text
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="GDScript" id="GDScript_hxs2k"]
+script/source = "extends Button
+
+@onready var joke_label = $JokeLabel
+
+func _on_mouse_entered():
+	joke_label.add_theme_color_override(\"font_color\", Color(1, 1, 1))
+
+
+func _on_mouse_exited():
+	joke_label.add_theme_color_override(\"font_color\", Color(0, 0, 0))
+"
+
+[node name="JokeWheelButton" type="Node2D"]
+script = SubResource("GDScript_xa8qe")
+joke = 7
+
+[node name="JokeNote" parent="." instance=ExtResource("1_uxeo3")]
+
+[node name="SelectJokeButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.0
+offset_top = -30.0
+offset_right = 28.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_hxs2k")
+
+[node name="JokeLabel" type="Label" parent="SelectJokeButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = -24.5
+offset_right = 28.0
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.251712
+theme = ExtResource("2_2dlfq")
+theme_type_variation = &"GraphNodeTitleLabel"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -3
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[connection signal="focus_entered" from="SelectJokeButton" to="SelectJokeButton" method="_on_focus_entered"]
+[connection signal="focus_exited" from="SelectJokeButton" to="SelectJokeButton" method="_on_focus_exited"]
+[connection signal="mouse_entered" from="SelectJokeButton" to="SelectJokeButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="SelectJokeButton" to="SelectJokeButton" method="_on_mouse_exited"]
