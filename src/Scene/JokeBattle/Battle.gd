@@ -12,7 +12,7 @@ var interactionCount
 func _ready():
 	currentCharacter = 0
 	interactionCount = 0
-	totalCharacters = 10
+	totalCharacters = GameLogic.characterAmount
 	totalInteractions = GameLogic.charsPerDay
 	traitList.loadCharacter(GameLogic.characters[currentCharacter])
 	
@@ -31,7 +31,8 @@ func nextCharacter():
 	currentCharacter += 1
 	if currentCharacter >= totalCharacters:
 		end()
-	traitList.loadCharacter(GameLogic.characters[currentCharacter])
+	else:
+		traitList.loadCharacter(GameLogic.characters[currentCharacter])
 	
 func runFromCharacter():
 	GameLogic.characters[currentCharacter].changeReputation(-runRepLoss)

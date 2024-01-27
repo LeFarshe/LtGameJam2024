@@ -9,7 +9,7 @@ const startRep = 11
 var quota = 0
 
 const charsPerDay = 6
-const characterAmount = 30
+const characterAmount = 10
 const traitMin = 3
 const traitMax = 5
 const moodChance = 0.25
