@@ -56,7 +56,9 @@ static func getTrait(newTrait):
 		Traits.SAD:
 			return Trait.new("Sad", {}, [0.2,0.2], 1)
 
-		
+static func sweetLittleTrait():
+	return createTrait(["Is in the chess club", "Tells sweet little lies", "Just works", "Is laughing now", "Rereleased Skyrim",
+	"Is finally awake"], {}, [1,1], 1)
 
 
 static func createTrait(potentialNames, reactions, others, reveal):

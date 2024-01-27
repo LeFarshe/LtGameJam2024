@@ -6,10 +6,18 @@ extends Node2D
 @onready var bottom = $Bottom
 @onready var face = $Face
 
-func _ready():
-	setSprite(randi(), false)
+var initialPosition = null
+
+func randomOffset():
+	if initialPosition == null:
+		initialPosition = position
+	else:
+		position = initialPosition
+	move_local_x(randf_range(-10, 10))
+	move_local_y(randf_range(-10, 10))
 
 func setSprite(funSeed, isMale): # randi
+	randomOffset()
 	# body = 4, 5
 	# bottom = 1, 6
 	# top = 3, 8
