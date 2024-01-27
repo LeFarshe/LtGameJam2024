@@ -79,11 +79,6 @@ func endGame():
 	
 func changePlayerRep(rep):
 	player.changeRep(rep)
-	
-func normalizedReputation(test):
-	if test <= 0:
-		return 0.1 + pow(cos(test * PI / 200), 3) * 0.9
-	else:
-		return test / 10
+
 
 
