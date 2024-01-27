@@ -10,6 +10,9 @@ script/source = "extends Node2D
 
 @onready var joke_type = $div/JokeType
 @onready var joke_price = $div/JokePrice
+@onready var joke_count = $div/JokeCount
+@onready var add_joke = $div/AddJoke
+@onready var remove_joke = $div/RemoveJoke
 @onready var div = $div
 
 const NOTE = preload(\"res://Scene/JokeSelection/Note.tscn\")
@@ -28,12 +31,15 @@ func _ready():
 	else:
 		joke_price.text = str(jokePrice)+\" REP\"
 	
-	for a in range(20):
-		addJoke()
+	joke_count.text = str(jokeCount)
+	
+	add_joke.connect(\"button_down\", addJoke)
+	remove_joke.connect(\"button_down\", removeJoke)
 
 func addJoke():
 	jokeCount += 1
-	if jokeCount < jokePileCap:
+	joke_count.text = str(jokeCount)
+	if jokeCount <= jokePileCap:
 		add_child(getNote(jokeCount))
 		div.move_local_y(noteYOffset)
 
@@ -41,6 +47,7 @@ func removeJoke():
 	if jokeCount == 0:
 		return
 	jokeCount -= 1
+	joke_count.text = str(jokeCount)
 	if jokeCount < jokePileCap:
 		div.move_local_y(-noteYOffset)
 		remove_child(get_child(get_child_count()-1))
@@ -94,3 +101,30 @@ theme = ExtResource("2_31gqt")
 theme_override_colors/font_color = Color(0.380392, 0, 0, 1)
 theme_override_font_sizes/font_size = 8
 horizontal_alignment = 2
+
+[node name="RemoveJoke" type="Button" parent="div"]
+offset_left = -23.0
+offset_top = 6.0
+offset_right = -5.0
+offset_bottom = 31.0
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "-"
+
+[node name="AddJoke" type="Button" parent="div"]
+offset_left = 3.0
+offset_top = 6.0
+offset_right = 21.0
+offset_bottom = 31.0
+theme = ExtResource("2_31gqt")
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "+"
+
+[node name="JokeCount" type="Label" parent="div"]
+offset_left = -7.0
+offset_top = 10.0
+offset_right = 7.0
+offset_bottom = 27.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+horizontal_alignment = 1
