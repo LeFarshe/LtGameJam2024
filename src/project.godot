@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 project/assembly_name="Bilk3dLaughGame"
 
+[gui]
+
+theme/custom="res://DefaultTheme.tres"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
