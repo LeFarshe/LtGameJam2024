@@ -10,10 +10,12 @@ const right = Vector2(192, 0)
 var dist = left.distance_to(right)
 
 func _ready():
-	for i in range(50):
-		jokes.append(NOTE.instantiate())
-		add_child(jokes[i])
-		get_child(-1).joke = Jokes.JokeTypes.BAD
+	var jokeDict = GameLogic.getHeldJokes()
+	for i in jokeDict:
+		for j in range(jokeDict[i]):
+			jokes.append(NOTE.instantiate())
+			add_child(jokes[-1])
+			get_child(-1).setjoke(i)
 	
 
 func _process(delta):

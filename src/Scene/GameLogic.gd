@@ -83,6 +83,9 @@ func endGame():
 func changePlayerRep(rep):
 	player.changeRep(rep)
 	
+func getHeldJokes():
+	return player.heldJokes
+	
 func canBuy(joke):
 	if player.spendableReputation >= Jokes.getPrice(joke):
 		return true

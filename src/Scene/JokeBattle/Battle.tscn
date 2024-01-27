@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cgs0e6pdt4qdd" path="res://Style/Resources/Battle-background.png" id="1_1kcj2"]
 [ext_resource type="Script" path="res://Scene/JokeBattle/Battle.gd" id="1_uasgp"]
-[ext_resource type="Theme" uid="uid://douokms53q2k7" path="res://Style/Resources/run_button_style.tres" id="3_su5vb"]
+[ext_resource type="Theme" uid="uid://bgh1utialwh0f" path="res://Style/Resources/run_button_style.tres" id="3_su5vb"]
 
 [node name="Battle" type="Control"]
 layout_mode = 3

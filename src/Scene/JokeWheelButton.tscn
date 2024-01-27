@@ -9,12 +9,9 @@ script/source = "extends Node2D
 @export var joke: Jokes.JokeTypes
 @onready var joke_label = $SelectJokeButton/JokeLabel
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	move_local_x(200)
-	move_local_y(200)
+func setjoke(setJoke):
 	var text : String
-	match joke:
+	match setJoke:
 		Jokes.JokeTypes.BAD:
 			joke_label.add_theme_font_size_override(\"font_size\", 10)
 			text = \"bad joke\"
@@ -38,10 +35,8 @@ func _ready():
 			text = \"Dark\"
 	joke_label.text = text
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _ready():
+	setjoke(joke)
 "
 
 [sub_resource type="GDScript" id="GDScript_hxs2k"]
