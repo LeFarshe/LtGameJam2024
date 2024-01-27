@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bma7xx8bmoawf"]
+[gd_scene load_steps=4 format=3 uid="uid://bqe4dfj6s0em4"]
 
 [ext_resource type="Script" path="res://Scene/JokeBattle/TraitList.gd" id="1_h1hpw"]
 [ext_resource type="Texture2D" uid="uid://bf52mvu4c4de3" path="res://Style/Resources/Clipboard.png" id="1_kr1n2"]
