@@ -1,15 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://n2m6bnaf5c5p"]
+[gd_scene load_steps=7 format=3 uid="uid://n2m6bnaf5c5p"]
 
 [ext_resource type="Texture2D" uid="uid://cgs0e6pdt4qdd" path="res://Style/Resources/Battle-background.png" id="1_1kcj2"]
 [ext_resource type="Script" path="res://Scene/JokeBattle/Battle.gd" id="1_uasgp"]
+[ext_resource type="PackedScene" uid="uid://mn6qv5dhfrij" path="res://Scene/JokeBattle/JokeSelector.tscn" id="2_751n4"]
 [ext_resource type="Theme" uid="uid://bgh1utialwh0f" path="res://Style/Resources/run_button_style.tres" id="3_su5vb"]
+[ext_resource type="PackedScene" uid="uid://bqe4dfj6s0em4" path="res://Scene/JokeBattle/TraitList.tscn" id="4_78vah"]
+[ext_resource type="Texture2D" uid="uid://3vhtsof2447y" path="res://Style/Resources/main_char.png" id="5_6hrhe"]
 
-[node name="Battle" type="Control"]
+[node name="Battle" type="Control" groups=["BattleElement"]]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_uasgp")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
@@ -18,11 +21,32 @@ expand_mode = 1
 
 [node name="RunButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 969.0
-offset_top = 543.0
-offset_right = 1093.0
-offset_bottom = 607.0
+offset_left = 968.855
+offset_top = 527.0
+offset_right = 1092.85
+offset_bottom = 591.0
+scale = Vector2(1.5, 1.5)
+pivot_offset = Vector2(57.3867, 34.66)
 theme = ExtResource("3_su5vb")
 metadata/_edit_use_anchors_ = true
+
+[node name="TraitList" parent="." instance=ExtResource("4_78vah")]
+offset_left = 950.0
+offset_top = 232.0
+offset_right = 950.0
+offset_bottom = 232.0
+
+[node name="Player" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 186.0
+offset_right = 956.0
+offset_bottom = 1082.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_6hrhe")
+
+[node name="JokeSelector" parent="." instance=ExtResource("2_751n4")]
+position = Vector2(484, 556)
+scale = Vector2(2, 2)
 
 [connection signal="pressed" from="RunButton" to="." method="_on_run_button_pressed"]
