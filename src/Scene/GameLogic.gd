@@ -5,7 +5,7 @@ const earningInflation = 1.03
 
 const startQuota = 214
 const quotaInflation = 1.5
-const startRep = 1100
+const startRep = 110
 var quota = 0
 
 const charsPerDay = 6
@@ -82,7 +82,7 @@ func newWeekCharacters():
 		characters[i] = createCharacter()
 	
 func endGame():
-	get_tree().change_scene_to_file("res://Scene/menu_page.tscn")
+	get_tree().change_scene_to_file("res://Scene/GameOver.tscn")
 	
 func changePlayerRep(rep):
 	player.changeRep(rep)

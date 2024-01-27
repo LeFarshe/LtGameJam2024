@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://c55w3u6ch33rp"]
+
+[ext_resource type="Texture2D" uid="uid://dy5s0we8s03bf" path="res://Style/Resources/Death_screen.png" id="1_dtwv8"]
+
+[sub_resource type="GDScript" id="GDScript_3r8dq"]
+script/source = "extends Control
+
+const timeUntilMenu = 2
+var currentTime
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	currentTime = timeUntilMenu
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	currentTime -= delta
+	if currentTime <= 0:
+		get_tree().change_scene_to_file(\"res://Scene/menu_page.tscn\")
+"
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = SubResource("GDScript_3r8dq")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("1_dtwv8")
+expand_mode = 1
