@@ -56,7 +56,7 @@ func changeRepetition(joke, change):
 	repeatedJoke[joke] = clamp(repeatedJoke[joke] + change, 0, 5)
 		
 func getRepetition(joke):
-	return pow(repeatedJoke[joke], 5) / 625 + 1
+	return pow(repeatedJoke[joke], 2) / 5 + 1
 	
 func revealTrait(joke):
 	for i in range(len(permTraits)):
