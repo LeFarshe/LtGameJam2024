@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://mja1sig6msc"]
+[gd_scene load_steps=7 format=3 uid="uid://mja1sig6msc"]
 
 [ext_resource type="Script" path="res://Scene/menu_page.gd" id="1_fomrx"]
 [ext_resource type="Texture2D" uid="uid://dikbthg12m36d" path="res://Style/Resources/Main_menu_background.tres" id="1_mq3m8"]
@@ -6,7 +6,6 @@
 [ext_resource type="Theme" uid="uid://dbb1vupg6t5t2" path="res://Style/Resources/story_button_style.tres" id="3_r1g43"]
 [ext_resource type="Theme" uid="uid://r1kjdwxa7fta" path="res://Style/Resources/play_button_style.tres" id="4_ou1bt"]
 [ext_resource type="Theme" uid="uid://c68irc2irblc4" path="res://Style/Resources/quit_button_style.tres" id="5_uuom4"]
-[ext_resource type="Theme" uid="uid://c87onuglwpbi6" path="res://Style/Resources/Menu_label_style.tres" id="7_hdbrm"]
 
 [node name="MenuPage" type="Control"]
 layout_mode = 3
@@ -50,17 +49,6 @@ theme = ExtResource("5_uuom4")
 
 [node name="FlipSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_1jt7k")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-clip_contents = false
-layout_mode = 0
-offset_left = 619.0
-offset_top = 117.0
-offset_right = 1112.0
-offset_bottom = 187.0
-theme = ExtResource("7_hdbrm")
-text = "I don't want to die from inflation"
-autowrap_mode = 0
 
 [connection signal="mouse_entered" from="Story" to="." method="_on_story_mouse_entered"]
 [connection signal="pressed" from="Story" to="." method="_on_story_pressed"]
