@@ -30,3 +30,5 @@ func sellJoke(joke):
 	spendableReputation += Jokes.getPrice(joke)
 	heldJokes[joke] -= 1
 	
+func getJokeCount(joke):
+	return heldJokes[joke]

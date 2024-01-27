@@ -24,6 +24,7 @@ position = Vector2(440, 360)
 rotation = -0.141372
 scale = Vector2(2, 2)
 jokeTitle = "Puns"
+joke = 0
 
 [node name="Sarcasm" parent="." instance=ExtResource("2_cm8dx")]
 position = Vector2(672, 352)

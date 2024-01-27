@@ -38,17 +38,23 @@ func _ready():
 	
 	joke_count.text = str(jokeCount)
 	
-	add_joke.connect(\"button_down\", addJoke)
+	for i in range(GameLogic.player.getJokeCount(joke)):
+		addJoke()
+	
+	add_joke.connect(\"button_down\", buyJoke)
 	remove_joke.connect(\"button_down\", removeJoke)
 
 func addJoke():
+	jokeCount += 1
+	joke_count.text = str(jokeCount)
+	if jokeCount <= jokePileCap:
+		add_child(getNote(jokeCount))
+		div.move_local_y(noteYOffset)
+
+func buyJoke():
 	if GameLogic.player.canBuy(joke):
 		GameLogic.player.buyJoke(joke)
-		jokeCount += 1
-		joke_count.text = str(jokeCount)
-		if jokeCount <= jokePileCap:
-			add_child(getNote(jokeCount))
-			div.move_local_y(noteYOffset)
+		addJoke()
 
 func removeJoke():
 	if jokeCount == 0:
