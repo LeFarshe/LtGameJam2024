@@ -25,4 +25,9 @@ project/assembly_name="Bilk3dLaughGame"
 
 [gui]
 
+theme/custom="res://DefaultTheme.tres"
 theme/custom_font="res://Style/Pixelme.ttf"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
