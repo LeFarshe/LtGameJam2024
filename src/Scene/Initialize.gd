@@ -2,10 +2,10 @@ extends Node2D
 
 var characters = []
 
-var permTraits = [[TraitFactory.Traits.DIFFERENTDEPARTMENT, 6],
- [TraitFactory.Traits.KINDMEAN, 20], [TraitFactory.Traits.INTDUMB, 17],
- [TraitFactory.Traits.CHILDISH, 10], [TraitFactory.Traits.CRINGE, 4],
- [TraitFactory.Traits.ZOOMER, 8], [TraitFactory.Traits.BOOMER, 10],
+var permTraits = [[TraitFactory.Traits.DIFFERENTDEPARTMENT, 3],
+ [TraitFactory.Traits.KINDMEAN, 10], [TraitFactory.Traits.INTDUMB, 8],
+ [TraitFactory.Traits.CHILDISH, 5], [TraitFactory.Traits.CRINGE, 2],
+ [TraitFactory.Traits.ZOOMER, 4], [TraitFactory.Traits.BOOMER, 5],
  [TraitFactory.Traits.LIKES, 13], [TraitFactory.Traits.PSYCHOPATH, 1]]
 var permWeights = 0
 
@@ -20,8 +20,7 @@ func _ready():
 		permWeights += i[1]
 	for i in tempTraits:
 		tempWeights += i[1]
-		
-	var char = createCharacter([], 3, [], 1)
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -45,7 +44,7 @@ func generateTraits(amount, traitList, weights):
 				generatedWeight -= checkedTrait[1]
 				if generatedWeight <= 0:
 					gottenTraits.append(checkedTrait[0])
-					generatedTraits.append(TraitFactory.traitFactory(checkedTrait[0]))
+					generatedTraits.append(TraitFactory.getTrait(checkedTrait[0]))
 					currentWeight -= checkedTrait[1]
 					break
 		

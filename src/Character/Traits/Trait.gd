@@ -22,8 +22,10 @@ func getName():
 	return name
 	
 func reveal(joke):
+	var rand = randf()
+	if rand > revealChance:
+		return false
 	for i in reactions:
 		if i == joke:
-			if randf() <= revealChance:
-				return true
+			return true
 	return false
