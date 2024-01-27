@@ -1,6 +1,7 @@
 extends Control
 
 @onready var traitList = $TraitList
+@onready var jokeSelector = $JokeSelector
 
 const runRepLoss = 3
 
@@ -22,12 +23,14 @@ func end():
 func tellJoke(joke):
 	GameLogic.characters[currentCharacter].reactToJoke(joke)
 	interactionCount += 1
+	GameLogic.player.heldJokes[joke] -= 1
 	if interactionCount >= totalInteractions:
 		end()
 	else:
 		nextCharacter()
 	
 func nextCharacter():
+	jokeSelector.loadJokes()
 	currentCharacter += 1
 	if currentCharacter >= totalCharacters:
 		end()

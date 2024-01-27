@@ -12,7 +12,7 @@ func _ready():
 	updateLabel()
 	
 func updateLabel():
-	amountLabel.text = str(GameLogic.player.spendableReputation)
+	amountLabel.text = str(floor(GameLogic.player.spendableReputation))
 
 
 "

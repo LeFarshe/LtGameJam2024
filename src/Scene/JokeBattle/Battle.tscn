@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bqe4dfj6s0em4" path="res://Scene/JokeBattle/TraitList.tscn" id="4_78vah"]
 [ext_resource type="Texture2D" uid="uid://3vhtsof2447y" path="res://Style/Resources/main_char.png" id="5_6hrhe"]
 
-[node name="Battle" type="Control"]
+[node name="Battle" type="Control" groups=["BattleElement"]]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_uasgp")

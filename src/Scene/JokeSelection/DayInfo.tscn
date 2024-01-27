@@ -15,7 +15,7 @@ const days = [\"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\"]
 func _ready():
 	dayLabel.text = days[GameLogic.day - 1]
 	weekLabel.text = \"Week \" + str(GameLogic.week)
-	quotaLabel.text = str(GameLogic.player.earnedReputation) + \"/\" + str(GameLogic.quota)
+	quotaLabel.text = str(floor(GameLogic.player.earnedReputation)) + \"/\" + str(GameLogic.quota)
 
 
 "

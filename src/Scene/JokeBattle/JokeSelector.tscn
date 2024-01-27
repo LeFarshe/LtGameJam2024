@@ -13,6 +13,7 @@ func _ready():
 	loadJokes()
 
 func loadJokes():
+	jokes = []
 	for i in get_children():
 		i.queue_free()
 	var jokeDict = GameLogic.getHeldJokes()
@@ -21,6 +22,8 @@ func loadJokes():
 			jokes.append(NOTE.instantiate())
 			add_child(jokes[-1])
 			get_child(-1).setjoke(i)
+	if len(jokes) < 5:
+		jokes.reverse()
 
 func _process(delta):
 	

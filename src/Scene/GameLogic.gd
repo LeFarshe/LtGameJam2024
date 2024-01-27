@@ -5,7 +5,7 @@ const earningInflation = 1.03
 
 const startQuota = 214
 const quotaInflation = 1.5
-const startRep = 11
+const startRep = 1100
 var quota = 0
 
 const charsPerDay = 6
