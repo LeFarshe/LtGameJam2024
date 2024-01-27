@@ -16,3 +16,17 @@ func changeRep(rep):
 	
 func spendRep(rep):
 	spendableReputation -= rep
+
+func canBuy(joke):
+	if spendableReputation >= Jokes.getPrice(joke):
+		return true
+	return false
+
+func buyJoke(joke):
+	spendableReputation -= Jokes.getPrice(joke)
+	heldJokes[joke] += 1
+
+func sellJoke(joke):
+	spendableReputation += Jokes.getPrice(joke)
+	heldJokes[joke] -= 1
+	

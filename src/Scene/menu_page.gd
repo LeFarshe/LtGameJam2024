@@ -4,7 +4,8 @@ func _on_story_pressed():
 	pass # Replace with function body.
 
 func _on_play_pressed():
-	get_tree().change_scene_to_file("res://Scene/game.tscn")
+	GameLogic.resetGame()
+	get_tree().change_scene_to_file("res://Scene/JokeSelection/RepStore.tscn")
 
 func _on_quit_pressed():
 	get_tree().quit()
