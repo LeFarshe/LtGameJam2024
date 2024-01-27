@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://dchdkfj1dxorq"]
+
+[ext_resource type="Script" path="res://Character/CharacterSprites/CharacterSprite.gd" id="1_6kvfi"]
+[ext_resource type="Texture2D" path="res://Character/CharacterSprites/characters_todd-Sheet.png" id="2_6p6s3"]
+[ext_resource type="Shader" path="res://Character/CharacterSprites/coloriser.gdshader" id="3_hjuy8"]
+[ext_resource type="Texture2D" path="res://Character/CharacterSprites/characters_todd22-Sheet.png" id="4_8a68s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0xbiw"]
+shader = ExtResource("3_hjuy8")
+shader_parameter/red = 0.5
+shader_parameter/green = 0.1
+shader_parameter/blue = 0.2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aygng"]
+shader = ExtResource("3_hjuy8")
+shader_parameter/red = 0.5
+shader_parameter/green = 0.1
+shader_parameter/blue = 0.2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_76q2c"]
+shader = ExtResource("3_hjuy8")
+shader_parameter/red = 0.5
+shader_parameter/green = 0.1
+shader_parameter/blue = 0.2
+
+[node name="CharacterSprite" type="Node2D"]
+position = Vector2(295, 235)
+scale = Vector2(3, 3)
+script = ExtResource("1_6kvfi")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+texture = ExtResource("2_6p6s3")
+vframes = 25
+
+[node name="Body" type="Sprite2D" parent="."]
+texture = ExtResource("2_6p6s3")
+vframes = 25
+
+[node name="Hair" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_0xbiw")
+texture = ExtResource("2_6p6s3")
+vframes = 25
+
+[node name="Top" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_aygng")
+texture = ExtResource("2_6p6s3")
+vframes = 25
+
+[node name="Bottom" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_76q2c")
+texture = ExtResource("2_6p6s3")
+vframes = 25
+
+[node name="Face" type="Sprite2D" parent="."]
+texture = ExtResource("4_8a68s")
+vframes = 5

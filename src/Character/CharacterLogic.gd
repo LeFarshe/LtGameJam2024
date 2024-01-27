@@ -6,6 +6,7 @@ var tempTraits = []
 var reputation = 0
 var repeatedJoke = {}
 var isMale = false
+var charSeed
 var name
 
 func _init(permanentTraits, temporaryTraits):
@@ -20,6 +21,7 @@ func _init(permanentTraits, temporaryTraits):
 	if randf() <= 0.5:
 		isMale = true
 	name = NameFactory.generateName(isMale)
+	charSeed = randi() 
 	
 func reactToJoke(joke):
 	var reaction = Jokes.getDefaultReaction(joke)
