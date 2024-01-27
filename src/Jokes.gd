@@ -22,7 +22,23 @@ static func getDefaultReaction(joke):
 	return ans
 
 static func getPrice(joke):
-	return 1
+	var ans = 0;
+	match joke:
+		JokeTypes.PUN:
+			ans = 5
+		JokeTypes.SARCASM:
+			ans = 10
+		JokeTypes.SLAPSTICK:
+			ans = 20
+		JokeTypes.SURREAL:
+			ans = 20
+		JokeTypes.SELFDEPRECATING:
+			ans = 30
+		JokeTypes.OBSERVATIONAL:
+			ans = 10
+		JokeTypes.DARK:
+			ans = 50
+	return ans
 	
 static func getName(joke):
 	var ans
