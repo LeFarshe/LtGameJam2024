@@ -11,10 +11,14 @@ config_version=5
 [application]
 
 config/name="Bilk3dLaughGame"
-run/main_scene="res://Scene/game.tscn"
+run/main_scene="res://Scene/menu_page.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [dotnet]
 
 project/assembly_name="Bilk3dLaughGame"
+
+[gui]
+
+theme/custom_font="res://Style/Pixelme.ttf"
