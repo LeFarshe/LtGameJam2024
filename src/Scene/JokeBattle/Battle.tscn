@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://n2m6bnaf5c5p"]
+[gd_scene load_steps=5 format=3 uid="uid://n2m6bnaf5c5p"]
 
 [ext_resource type="Texture2D" uid="uid://cgs0e6pdt4qdd" path="res://Style/Resources/Battle-background.png" id="1_1kcj2"]
 [ext_resource type="Script" path="res://Scene/JokeBattle/Battle.gd" id="1_uasgp"]
 [ext_resource type="Theme" uid="uid://bgh1utialwh0f" path="res://Style/Resources/run_button_style.tres" id="3_su5vb"]
+[ext_resource type="PackedScene" uid="uid://db0sq51w2g4fb" path="res://Character/CharacterSprites/CharacterSprite.tscn" id="4_p310l"]
 
 [node name="Battle" type="Control"]
 layout_mode = 3
@@ -24,5 +25,8 @@ offset_right = 1093.0
 offset_bottom = 607.0
 theme = ExtResource("3_su5vb")
 metadata/_edit_use_anchors_ = true
+
+[node name="CharacterSprite" parent="." instance=ExtResource("4_p310l")]
+position = Vector2(623, 301)
 
 [connection signal="pressed" from="RunButton" to="." method="_on_run_button_pressed"]
