@@ -27,21 +27,22 @@ func reactToJoke(joke):
 		reaction[1] *= temp[1]
 	
 	
-	calculateRep(joke, reaction)
-	revealTrait(joke)
+	var reputationChange = calculateRep(joke, reaction)
+	var traitRevealed = revealTrait(joke)
+	var revealedName = null
+	if traitRevealed != null:
+		revealedName = traitRevealed.getName()
 	changeRepetition(joke, 1)
-	return reaction
+	return [reputationChange, revealedName]
 	
 func calculateRep(joke, reaction):
 	var rep = reaction[0] - (reaction[1] * getRepetition(joke) / normalizedReputation())
-	reputation += rep
-	if reaction[0] > 0:
-		var reward = randf() * 17 + 7 + Jokes.getPrice(joke) * 0.2
-		#ADD TO TOTAL REP
-		reaction[0] * reward
-	else:
-		#ADD TO TOTAL REP
-		0
+	changeReputation(rep)
+	if rep > 0:
+		var reward = round((randf() * 17 + 7) * GameLogic.earningMultiplier  + (Jokes.getPrice(joke) * 0.2))
+		GameLogic.changePlayerRep(rep * reward)
+		return rep * reward
+	return 0
 
 func changeReputation(change):
 	reputation = clamp(reputation + change, -100, 100)
@@ -74,6 +75,13 @@ func getTraits():
 		else:
 			ans.append("???")
 	return ans
+	
+func resetMood(newMood):
+	tempTraits = newMood
+	
+func nextWeek():
+	for i in Jokes.JokeTypes.keys():
+		changeRepetition(Jokes.JokeTypes[i], -1)
 
 	
 	

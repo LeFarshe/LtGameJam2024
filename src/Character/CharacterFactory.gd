@@ -41,3 +41,6 @@ func generateTraits(amount, traitList, weights):
 					break
 		
 	return generatedTraits
+	
+func generateMood(amount):
+	return generateTraits(amount, tempTraits, tempWeights)
