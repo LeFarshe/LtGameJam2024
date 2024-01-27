@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://tu1y82f7f3il"]
+
+[ext_resource type="Texture2D" uid="uid://f3klvpmuctls" path="res://Scene/JokeSelection/notes_sprite.png" id="1_pudpw"]
+
+[sub_resource type="GDScript" id="GDScript_dq1sl"]
+script/source = "extends Sprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	frame = randi() % 10
+	rotate(randf_range(-0.2, 0.2))
+"
+
+[node name="Note" type="Node2D"]
+
+[node name="NoteSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_pudpw")
+hframes = 5
+vframes = 2
+script = SubResource("GDScript_dq1sl")
