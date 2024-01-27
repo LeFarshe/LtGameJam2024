@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dt173lrru8f07"]
 
-[ext_resource type="PackedScene" uid="uid://tu1y82f7f3il" path="res://Scene/JokeSelection/Note.tscn" id="1_uxeo3"]
-[ext_resource type="Theme" uid="uid://c6g8bwrd6ycst" path="res://DefaultTheme.tres" id="2_2dlfq"]
+[ext_resource type="PackedScene" uid="uid://tu1y82f7f3il" path="res://Scene/JokeSelection/Note.tscn" id="1_lfq6a"]
+[ext_resource type="Theme" uid="uid://c6g8bwrd6ycst" path="res://DefaultTheme.tres" id="2_exa32"]
 
 [sub_resource type="GDScript" id="GDScript_xa8qe"]
 script/source = "extends Node2D
@@ -56,7 +56,7 @@ func _on_mouse_exited():
 script = SubResource("GDScript_xa8qe")
 joke = 7
 
-[node name="JokeNote" parent="." instance=ExtResource("1_uxeo3")]
+[node name="JokeNote" parent="." instance=ExtResource("1_lfq6a")]
 
 [node name="SelectJokeButton" type="Button" parent="."]
 anchors_preset = 8
@@ -86,7 +86,7 @@ offset_bottom = 14.5
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 0.251712
-theme = ExtResource("2_2dlfq")
+theme = ExtResource("2_exa32")
 theme_type_variation = &"GraphNodeTitleLabel"
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -3
