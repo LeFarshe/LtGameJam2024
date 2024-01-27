@@ -5,6 +5,8 @@ var revealedTraits = []
 var tempTraits = []
 var reputation = 0
 var repeatedJoke = {}
+var isMale = false
+var name
 
 func _init(permanentTraits, temporaryTraits):
 	var tempJokes = Jokes.JokeTypes.keys()
@@ -14,6 +16,10 @@ func _init(permanentTraits, temporaryTraits):
 	for i in permTraits:
 		revealedTraits.append(false)
 	tempTraits = temporaryTraits
+	
+	if randf() <= 0.5:
+		isMale = true
+	name = NameFactory.generateName(isMale)
 	
 func reactToJoke(joke):
 	var reaction = Jokes.getDefaultReaction(joke)
