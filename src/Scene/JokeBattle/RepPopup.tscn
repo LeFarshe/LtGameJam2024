@@ -9,10 +9,8 @@ script/source = "extends Node2D
 @onready var label = $RepPopup/Label
 @onready var animation_player = $AnimationPlayer
 
-func _ready():
-	setRep(-20)
-
 func setRep(rep):
+	rep = floor(rep)
 	var text = \"\"
 	if rep < -0.2:
 		text = str(rep) + \" REP\"
@@ -50,7 +48,7 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 1, 1.3, 1.5),
-"transitions": PackedFloat32Array(1, 1, 1, 0.5),
+"transitions": PackedFloat32Array(1, 0.366023, 1, 0.5),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
@@ -67,7 +65,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4sa7m"]
@@ -80,6 +78,7 @@ _data = {
 script = SubResource("GDScript_htl4j")
 
 [node name="RepPopup" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
 position = Vector2(0, 50)
 texture = ExtResource("1_1be42")
 

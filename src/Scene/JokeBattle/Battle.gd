@@ -39,8 +39,9 @@ func end():
 func tellJoke(joke):
 	$NoteFlipSound.play(0.1)
 	var character = GameLogic.characters[currentCharacter]
-	character.reactToJoke(joke)
+	var jokeReactioninfo = character.reactToJoke(joke)
 	var reaction = character.reputation - oldRepWithChar
+	$PopupBase.setRep(jokeReactioninfo[0])
 	if reaction < -0.2:
 		$JokeFail.play(8)
 		character_sprite.setMood("Irritated")
@@ -62,6 +63,7 @@ func nextCharacter():
 	
 func runFromCharacter():
 	GameLogic.characters[currentCharacter].changeReputation(-runRepLoss)
+	$PopupBase.setRep(-runRepLoss)
 	character_sprite.setMood("Irritated")
 	nextCharacter()
 
