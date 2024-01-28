@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwjfrdmnn1m84"]
+[gd_scene load_steps=6 format=3 uid="uid://dwjfrdmnn1m84"]
 
 [ext_resource type="PackedScene" uid="uid://tu1y82f7f3il" path="res://Scene/JokeSelection/Note.tscn" id="1_rm5xe"]
 [ext_resource type="Theme" uid="uid://c6g8bwrd6ycst" path="res://DefaultTheme.tres" id="2_31gqt"]
+[ext_resource type="AudioStream" uid="uid://cuo7vhg268g4f" path="res://Style/Sounds/page_flip.mp3" id="3_txvpe"]
 
 [sub_resource type="GDScript" id="GDScript_1qswr"]
 script/source = "extends Node2D
@@ -15,6 +16,8 @@ script/source = "extends Node2D
 @onready var add_joke = $div/AddJoke
 @onready var remove_joke = $div/RemoveJoke
 @onready var div = $div
+
+@onready var flip_sound = $FlipSound
 
 const NOTE = preload(\"res://Scene/JokeSelection/Note.tscn\")
 const noteYOffset = -2
@@ -53,6 +56,7 @@ func addJoke():
 
 func buyJoke():
 	if GameLogic.player.canBuy(joke):
+		flip_sound.play(0.1)
 		GameLogic.player.buyJoke(joke)
 		addJoke()
 	get_tree().call_group(\"ReputationAmount\", \"updateLabel\")
@@ -60,6 +64,7 @@ func buyJoke():
 func removeJoke():
 	if jokeCount == 0:
 		return
+	flip_sound.play()
 	GameLogic.player.sellJoke(joke)
 	jokeCount -= 1
 	joke_count.text = str(jokeCount)
@@ -73,6 +78,13 @@ func getNote(noteInList):
 	note.move_local_y(noteInList * noteYOffset)
 	return note
 "
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4x6kh"]
+playback_mode = 1
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("3_txvpe")
+stream_0/weight = 1.0
 
 [node name="JokeSelect" type="Node2D"]
 script = SubResource("GDScript_1qswr")
@@ -151,3 +163,8 @@ offset_bottom = 27.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 12
 horizontal_alignment = 1
+
+[node name="FlipSound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_4x6kh")
+volume_db = -10.0
+max_polyphony = 4

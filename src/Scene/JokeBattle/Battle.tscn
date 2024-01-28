@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://n2m6bnaf5c5p"]
+[gd_scene load_steps=17 format=3 uid="uid://n2m6bnaf5c5p"]
 
 [ext_resource type="Texture2D" uid="uid://cgs0e6pdt4qdd" path="res://Style/Resources/Battle-background.png" id="1_1kcj2"]
 [ext_resource type="Script" path="res://Scene/JokeBattle/Battle.gd" id="1_uasgp"]
@@ -7,6 +7,32 @@
 [ext_resource type="PackedScene" uid="uid://bqe4dfj6s0em4" path="res://Scene/JokeBattle/TraitList.tscn" id="4_78vah"]
 [ext_resource type="Texture2D" uid="uid://3vhtsof2447y" path="res://Style/Resources/main_char.png" id="5_6hrhe"]
 [ext_resource type="PackedScene" uid="uid://db0sq51w2g4fb" path="res://Character/CharacterSprites/CharacterSprite.tscn" id="7_kfbqy"]
+[ext_resource type="AudioStream" uid="uid://cuo7vhg268g4f" path="res://Style/Sounds/page_flip.mp3" id="8_nssbo"]
+[ext_resource type="AudioStream" uid="uid://b5hlmp2cfv8a0" path="res://Style/Sounds/Laughter/dumby-laugh-82591.mp3" id="11_rim1s"]
+[ext_resource type="AudioStream" uid="uid://vr0ufevns3ti" path="res://Style/Sounds/Laughter/girl-laugh-6689.mp3" id="12_nriyc"]
+[ext_resource type="AudioStream" uid="uid://bp2cliuvfxi" path="res://Style/Sounds/Laughter/todd.mp3" id="13_08whu"]
+[ext_resource type="AudioStream" uid="uid://bfmobvdkb23r6" path="res://Style/Sounds/Laughter/hahaha-105737.mp3" id="13_twgff"]
+[ext_resource type="AudioStream" uid="uid://ck3xieg07rf38" path="res://Style/Sounds/Irritation/cricket-sound-113945.mp3" id="14_03gl5"]
+[ext_resource type="AudioStream" uid="uid://boti1nxpctl7h" path="res://Style/Sounds/Laughter/soft-laughing-6445.mp3" id="14_owsf5"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_w7605"]
+playback_mode = 1
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("8_nssbo")
+stream_0/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1jxr3"]
+random_pitch = 1.2
+streams_count = 4
+stream_0/stream = ExtResource("11_rim1s")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("12_nriyc")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("13_twgff")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("14_owsf5")
+stream_3/weight = 1.0
 
 [node name="Battle" type="Control" groups=["BattleElement"]]
 layout_mode = 3
@@ -53,4 +79,24 @@ position = Vector2(556, 323)
 position = Vector2(484, 556)
 scale = Vector2(2, 2)
 
+[node name="NoteFlipSound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_w7605")
+volume_db = -10.0
+
+[node name="CharSwitchTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Laugh" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_1jxr3")
+volume_db = -10.0
+
+[node name="ToddPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_08whu")
+volume_db = -15.0
+
+[node name="JokeFail" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_03gl5")
+volume_db = -15.0
+
 [connection signal="pressed" from="RunButton" to="." method="_on_run_button_pressed"]
+[connection signal="timeout" from="CharSwitchTimer" to="." method="_on_char_switch_timer_timeout"]

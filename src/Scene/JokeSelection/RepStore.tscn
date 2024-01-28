@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ctn2i3eklcl2s"]
+[gd_scene load_steps=11 format=3 uid="uid://ctn2i3eklcl2s"]
 
 [ext_resource type="Texture2D" uid="uid://ct5skwvqnfwso" path="res://Scene/JokeSelection/Rep_store.png" id="1_ef15j"]
 [ext_resource type="PackedScene" uid="uid://dwjfrdmnn1m84" path="res://Scene/JokeSelection/JokeSelect.tscn" id="2_cm8dx"]
@@ -7,6 +7,8 @@
 [ext_resource type="FontFile" uid="uid://bodhipwvbjhr7" path="res://Style/OpenSans-Medium.ttf" id="5_ls4ev"]
 [ext_resource type="PackedScene" uid="uid://dxmimg1e1l400" path="res://Scene/JokeSelection/RepAmount.tscn" id="6_o58fx"]
 [ext_resource type="PackedScene" uid="uid://nyka2n0n3lme" path="res://Scene/JokeSelection/DayInfo.tscn" id="7_7fj00"]
+[ext_resource type="AudioStream" uid="uid://bkea0vi2h6yd1" path="res://Style/Sounds/Local Forecast - Elevator [FgXYzF5-Yiw].mp3" id="8_qkpg8"]
+[ext_resource type="Script" path="res://Scene/JokeSelection/MusicStolenFromTF2.gd" id="9_w22d8"]
 
 [sub_resource type="GDScript" id="GDScript_62uv6"]
 script/source = "extends Button
@@ -109,3 +111,11 @@ offset_top = 24.0
 offset_right = -7.0
 offset_bottom = 24.0
 scale = Vector2(2, 2)
+
+[node name="ElevatorMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_qkpg8")
+volume_db = -25.0
+autoplay = true
+script = ExtResource("9_w22d8")
+
+[connection signal="finished" from="ElevatorMusic" to="ElevatorMusic" method="_on_finished"]

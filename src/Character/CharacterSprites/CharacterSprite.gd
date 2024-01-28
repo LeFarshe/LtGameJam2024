@@ -7,14 +7,15 @@ extends Node2D
 @onready var face = $Face
 
 var initialPosition = null
+const offset = 20
 
 func randomOffset():
 	if initialPosition == null:
 		initialPosition = position
 	else:
 		position = initialPosition
-	move_local_x(randf_range(-10, 10))
-	move_local_y(randf_range(-10, 10))
+	move_local_x(randf_range(-offset, offset))
+	move_local_y(randf_range(-offset, offset))
 
 func setSprite(funSeed, isMale): # randi
 	randomOffset()
@@ -75,12 +76,13 @@ func setMood(moodTrait):
 	# irritated 3
 	# tired 2
 	# normal 0
+	face.frame = 0
 	match moodTrait:
-		TraitFactory.Traits.IRRITATED:
+		"Irritated":
 			face.frame = 3
-		TraitFactory.Traits.SAD:
+		"Sad":
 			face.frame = 4
-		TraitFactory.Traits.HAPPY:
+		"Happy":
 			face.frame = 1
-		TraitFactory.Traits.TIRED:
+		"Tired":
 			face.frame = 2

@@ -25,14 +25,14 @@ func loadCharacter(character):
 func getRotation():
 	return deg_to_rad(randf() * (rotateMax - rotateMin) + rotateMin)
 	
-func addTrait(name):
+func addTrait(traitName):
 	var newLabel = Label.new()
 	newLabel.theme = newTheme
 	newLabel.add_theme_font_size_override("font_size", 20)
 	newLabel.add_theme_color_override("font_color", Color.BLACK)
 	newLabel.rotation = getRotation()
 	traitControl.add_child(newLabel)
-	newLabel.text = "• " + name
+	newLabel.text = "• " + traitName
 	newLabel.set_position(Vector2(0, labelY * traits))
 	
 	traits += 1
