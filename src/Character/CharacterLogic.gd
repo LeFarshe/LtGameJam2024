@@ -9,6 +9,9 @@ var isMale = false
 var charSeed
 var name
 
+const startBadnessMulti = 0.4
+var badnessMulti
+
 func _init(permanentTraits, temporaryTraits):
 	var tempJokes = Jokes.JokeTypes.keys()
 	for joke in tempJokes:
@@ -22,6 +25,7 @@ func _init(permanentTraits, temporaryTraits):
 		isMale = true
 	name = NameFactory.generateName(isMale)
 	charSeed = randi() 
+	badnessMulti = startBadnessMulti
 	
 func reactToJoke(joke):
 	var reaction = Jokes.getDefaultReaction(joke)
@@ -44,7 +48,7 @@ func reactToJoke(joke):
 	return [reputationChange, revealedName]
 	
 func calculateRep(joke, reaction):
-	var rep = reaction[0] - (reaction[1] * getRepetition(joke) / normalizedReputation())
+	var rep = reaction[0] - (reaction[1] * getRepetition(joke) * badnessMulti / normalizedReputation())
 	changeReputation(rep)
 	if rep > 0:
 		var reward = round((randf() * 17 + 7) * GameLogic.earningMultiplier  + (Jokes.getPrice(joke) * 0.2))
@@ -65,7 +69,7 @@ func changeRepetition(joke, change):
 	repeatedJoke[joke] = clamp(repeatedJoke[joke] + change, 0, 5)
 		
 func getRepetition(joke):
-	return pow(repeatedJoke[joke], 2) / 5 + 1
+	return pow(repeatedJoke[joke], 2) / 10 + 1
 	
 func revealTrait(joke):
 	for i in range(len(permTraits)):
@@ -88,6 +92,7 @@ func resetMood(newMood):
 	tempTraits = newMood
 	
 func nextWeek():
+	badnessMulti = 1
 	for i in Jokes.JokeTypes.keys():
 		changeRepetition(Jokes.JokeTypes[i], -1)
 
