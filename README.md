@@ -1,4 +1,2 @@
 # LtGameJam2024
-i farted
-<br>
-yes funny
+I Don't Want to Die from Inflation
