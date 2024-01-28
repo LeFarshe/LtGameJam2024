@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://n2m6bnaf5c5p"]
+[gd_scene load_steps=23 format=3 uid="uid://n2m6bnaf5c5p"]
 
 [ext_resource type="Texture2D" uid="uid://cgs0e6pdt4qdd" path="res://Style/Resources/Battle-background.png" id="1_1kcj2"]
 [ext_resource type="Script" path="res://Scene/JokeBattle/Battle.gd" id="1_uasgp"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://bfmobvdkb23r6" path="res://Style/Sounds/Laughter/hahaha-105737.mp3" id="13_twgff"]
 [ext_resource type="AudioStream" uid="uid://ck3xieg07rf38" path="res://Style/Sounds/Irritation/cricket-sound-113945.mp3" id="14_03gl5"]
 [ext_resource type="AudioStream" uid="uid://boti1nxpctl7h" path="res://Style/Sounds/Laughter/soft-laughing-6445.mp3" id="14_owsf5"]
+[ext_resource type="PackedScene" uid="uid://coic61haqvgga" path="res://Scene/JokeBattle/RepPopup.tscn" id="15_l2tjr"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_w7605"]
 playback_mode = 1
@@ -64,20 +65,6 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0)
 }
 
-[sub_resource type="Animation" id="Animation_b6qq4"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterSprite:position:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(323, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-
 [sub_resource type="Animation" id="Animation_qus2u"]
 resource_name = "CharacterExit"
 tracks/0/type = "bezier"
@@ -90,6 +77,20 @@ tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(323, -0.25, 0, 0.6, 0, 900, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0.2, 1)
+}
+
+[sub_resource type="Animation" id="Animation_b6qq4"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(323, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oyub6"]
@@ -165,6 +166,10 @@ volume_db = -15.0
 libraries = {
 "": SubResource("AnimationLibrary_oyub6")
 }
+
+[node name="PopupBase" parent="." instance=ExtResource("15_l2tjr")]
+position = Vector2(950, 229)
+scale = Vector2(2, 2)
 
 [connection signal="pressed" from="RunButton" to="." method="_on_run_button_pressed"]
 [connection signal="animation_finished" from="CharacterAnimations" to="." method="_on_character_animations_animation_finished"]

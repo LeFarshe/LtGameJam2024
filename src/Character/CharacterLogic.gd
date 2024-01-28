@@ -50,11 +50,10 @@ func reactToJoke(joke):
 func calculateRep(joke, reaction):
 	var rep = reaction[0] - (reaction[1] * getRepetition(joke) * badnessMulti / normalizedReputation())
 	changeReputation(rep)
+	var reward = round((randf() * 17 + 7) * GameLogic.earningMultiplier  + (Jokes.getPrice(joke) * 0.2))
 	if rep > 0:
-		var reward = round((randf() * 17 + 7) * GameLogic.earningMultiplier  + (Jokes.getPrice(joke) * 0.2))
 		GameLogic.changePlayerRep(rep * reward)
-		return rep * reward
-	return 0
+	return rep * reward
 
 func changeReputation(change):
 	reputation = clamp(reputation + change, -100, 100)

@@ -133,16 +133,16 @@ offset_top = 409.0
 offset_right = 565.0
 offset_bottom = 458.0
 theme = ExtResource("6_skt8r")
-text = "Tell puns on break to your colleagues."
+text = "Tell puns on break to your colleagues to gain reputation."
 
 [node name="Explanation3" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 745.0
-offset_top = 247.0
-offset_right = 1064.0
-offset_bottom = 296.0
+offset_left = 748.0
+offset_top = 244.0
+offset_right = 1067.0
+offset_bottom = 318.0
 theme = ExtResource("6_skt8r")
-text = "Get to know your colleagues better to tell better jokes."
+text = "Get to know your colleagues better to tell better jokes. Pay attention to their moods."
 
 [node name="Explanation4" type="RichTextLabel" parent="."]
 layout_mode = 0

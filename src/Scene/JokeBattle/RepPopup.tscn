@@ -1,0 +1,99 @@
+[gd_scene load_steps=7 format=3 uid="uid://coic61haqvgga"]
+
+[ext_resource type="Texture2D" uid="uid://dhote3ellnlq6" path="res://Style/Sprites/Popup.png" id="1_1be42"]
+[ext_resource type="Theme" uid="uid://c6g8bwrd6ycst" path="res://DefaultTheme.tres" id="2_iqlx6"]
+
+[sub_resource type="GDScript" id="GDScript_htl4j"]
+script/source = "extends Node2D
+
+@onready var label = $RepPopup/Label
+@onready var animation_player = $AnimationPlayer
+
+func setRep(rep):
+	rep = floor(rep)
+	var text = \"\"
+	if rep < -0.2:
+		text = str(rep) + \" REP\"
+		label.add_theme_color_override(\"font_color\", Color(\"850000\"))
+	elif rep > 0.2:
+		text = \"+\" + str(rep) + \" REP\"
+		label.add_theme_color_override(\"font_color\", Color(\"008500\"))
+	else:
+		text = \"ok\"
+		label.add_theme_color_override(\"font_color\", Color(\"000000\"))
+	label.text = text
+	
+	animation_player.play(\"FadeIn\")
+"
+
+[sub_resource type="Animation" id="Animation_d3di5"]
+resource_name = "FadeIn"
+length = 1.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RepPopup:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(50, -0.25, 0, 0.2, -46, 0, -0.8, 1, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RepPopup:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 1.3, 1.5),
+"transitions": PackedFloat32Array(1, 0.366023, 1, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3tjox"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RepPopup:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4sa7m"]
+_data = {
+"FadeIn": SubResource("Animation_d3di5"),
+"RESET": SubResource("Animation_3tjox")
+}
+
+[node name="PopupBase" type="Node2D"]
+script = SubResource("GDScript_htl4j")
+
+[node name="RepPopup" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, 50)
+texture = ExtResource("1_1be42")
+
+[node name="Label" type="Label" parent="RepPopup"]
+offset_left = -29.0
+offset_top = -13.0
+offset_right = 52.0
+offset_bottom = 23.0
+theme = ExtResource("2_iqlx6")
+theme_type_variation = &"GraphNodeTitleLabel"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4sa7m")
+}
