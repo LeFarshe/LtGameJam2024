@@ -6,19 +6,9 @@ extends Node2D
 @onready var bottom = $Bottom
 @onready var face = $Face
 
-var initialPosition = null
 const offset = 20
 
-func randomOffset():
-	if initialPosition == null:
-		initialPosition = position
-	else:
-		position = initialPosition
-	move_local_x(randf_range(-offset, offset))
-	move_local_y(randf_range(-offset, offset))
-
 func setSprite(funSeed, isMale): # randi
-	randomOffset()
 	# body = 4, 5
 	# bottom = 1, 6
 	# top = 3, 8

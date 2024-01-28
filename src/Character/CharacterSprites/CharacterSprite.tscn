@@ -23,9 +23,10 @@ shader_parameter/red = 0.5
 shader_parameter/green = 0.1
 shader_parameter/blue = 0.2
 
-[node name="CharacterSprite" type="Node2D"]
+[node name="CharacterSprite" type="Sprite2D"]
 position = Vector2(295, 235)
 scale = Vector2(3, 3)
+offset = 20
 script = ExtResource("1_8wryv")
 
 [node name="Shadow" type="Sprite2D" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://n2m6bnaf5c5p"]
+[gd_scene load_steps=22 format=3 uid="uid://n2m6bnaf5c5p"]
 
 [ext_resource type="Texture2D" uid="uid://cgs0e6pdt4qdd" path="res://Style/Resources/Battle-background.png" id="1_1kcj2"]
 [ext_resource type="Script" path="res://Scene/JokeBattle/Battle.gd" id="1_uasgp"]
@@ -34,6 +34,72 @@ stream_2/weight = 1.0
 stream_3/stream = ExtResource("14_owsf5")
 stream_3/weight = 1.0
 
+[sub_resource type="Animation" id="Animation_ru7xa"]
+resource_name = "CharacterAnimation"
+
+[sub_resource type="Animation" id="Animation_rlvmc"]
+resource_name = "CharacterEntrance"
+length = 0.75
+step = 0.05
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1296, -0.25, 0, 0.4, -185, 556, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.75)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterSprite:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(323, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_b6qq4"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(323, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_qus2u"]
+resource_name = "CharacterExit"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(323, -0.25, 0, 0.6, 0, 900, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.2, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oyub6"]
+_data = {
+"CharacterAnimation": SubResource("Animation_ru7xa"),
+"CharacterEntrance": SubResource("Animation_rlvmc"),
+"CharacterExit": SubResource("Animation_qus2u"),
+"RESET": SubResource("Animation_b6qq4")
+}
+
 [node name="Battle" type="Control" groups=["BattleElement"]]
 layout_mode = 3
 anchors_preset = 0
@@ -57,12 +123,6 @@ pivot_offset = Vector2(57.3867, 34.66)
 theme = ExtResource("3_su5vb")
 metadata/_edit_use_anchors_ = true
 
-[node name="TraitList" parent="." instance=ExtResource("4_78vah")]
-offset_left = 950.0
-offset_top = 232.0
-offset_right = 950.0
-offset_bottom = 232.0
-
 [node name="Player" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 60.0
@@ -75,6 +135,12 @@ texture = ExtResource("5_6hrhe")
 [node name="CharacterSprite" parent="." instance=ExtResource("7_kfbqy")]
 position = Vector2(556, 323)
 
+[node name="TraitList" parent="." instance=ExtResource("4_78vah")]
+offset_left = 950.0
+offset_top = 232.0
+offset_right = 950.0
+offset_bottom = 232.0
+
 [node name="JokeSelector" parent="." instance=ExtResource("2_751n4")]
 position = Vector2(484, 556)
 scale = Vector2(2, 2)
@@ -82,9 +148,6 @@ scale = Vector2(2, 2)
 [node name="NoteFlipSound" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_w7605")
 volume_db = -10.0
-
-[node name="CharSwitchTimer" type="Timer" parent="."]
-one_shot = true
 
 [node name="Laugh" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_1jxr3")
@@ -98,5 +161,10 @@ volume_db = -15.0
 stream = ExtResource("14_03gl5")
 volume_db = -15.0
 
+[node name="CharacterAnimations" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_oyub6")
+}
+
 [connection signal="pressed" from="RunButton" to="." method="_on_run_button_pressed"]
-[connection signal="timeout" from="CharSwitchTimer" to="." method="_on_char_switch_timer_timeout"]
+[connection signal="animation_finished" from="CharacterAnimations" to="." method="_on_character_animations_animation_finished"]
