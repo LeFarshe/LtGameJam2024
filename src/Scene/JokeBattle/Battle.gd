@@ -4,7 +4,8 @@ extends Control
 @onready var jokeSelector = $JokeSelector
 
 const runRepLoss = 3
-const nextPersonDelay = 1
+const removeCharacterDelay = 0.5
+const addCharacterDelay = 0.75
 
 var currentCharacter
 var totalCharacters
@@ -57,7 +58,7 @@ func nextCharacter():
 	$JokeSelector.visible = false
 	$RunButton.disabled = true
 	jokeSelector.loadJokes()
-	$CharSwitchTimer.start(nextPersonDelay)
+	$CharacterAnimations.play("CharacterExit")
 	
 func runFromCharacter():
 	GameLogic.characters[currentCharacter].changeReputation(-runRepLoss)
@@ -67,12 +68,16 @@ func runFromCharacter():
 func _on_run_button_pressed():
 	runFromCharacter()
 
-func _on_char_switch_timer_timeout():
-	$JokeSelector.visible = true
-	$RunButton.disabled = false
-	currentCharacter += 1
-	if currentCharacter >= totalCharacters or interactionCount >= totalInteractions:
-		end()
+
+func _on_character_animations_animation_finished(anim_name):
+	if anim_name == "CharacterExit":
+		currentCharacter += 1
+		if currentCharacter >= totalCharacters or interactionCount >= totalInteractions:
+			end()
+		else:
+			traitList.loadCharacter(GameLogic.characters[currentCharacter])
+			drawCharacter()
+			$CharacterAnimations.play("CharacterEntrance")
 	else:
-		traitList.loadCharacter(GameLogic.characters[currentCharacter])
-		drawCharacter()
+		$JokeSelector.visible = true
+		$RunButton.disabled = false
