@@ -66,7 +66,7 @@ func loadReputation(character):
 		reputationLabel.add_theme_color_override("font_color", Color("009700"))
 	
 	if abs(rep) < repRange1:
-		reputationLabel.text = "test"
+		reputationLabel.text = ""
 	elif abs(rep) < repRange2:
 		if rep < 0:
 			setRepText(neg1)
