@@ -24,9 +24,10 @@ var week = 1
 var day = 1
 
 func _ready():
-	pass
+	GlobalSfx.toggleOfficeNoise(true)
 
 func resetGame():
+	GlobalSfx.toggleOfficeNoise(true)
 	earningMultiplier = 1
 	day = 1
 	week = 1

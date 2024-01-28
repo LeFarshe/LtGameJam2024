@@ -4,6 +4,7 @@ extends Control
 @onready var jokeSelector = $JokeSelector
 
 const runRepLoss = 3
+const nextPersonDelay = 1
 
 var currentCharacter
 var totalCharacters
@@ -36,12 +37,17 @@ func end():
 	
 func tellJoke(joke):
 	$NoteFlipSound.play(0.1)
-	var char = GameLogic.characters[currentCharacter]
-	char.reactToJoke(joke)
-	var reaction = char.reputation - oldRepWithChar
-	if reaction < -0.1:
+	var character = GameLogic.characters[currentCharacter]
+	character.reactToJoke(joke)
+	var reaction = character.reputation - oldRepWithChar
+	if reaction < -0.2:
+		$JokeFail.play(8)
 		character_sprite.setMood("Irritated")
-	elif reaction > 0.1:
+	elif reaction > 0.2:
+		if character.name == "Todd Howard":
+			$ToddPlayer.play()
+		else:
+			$Laugh.play()
 		character_sprite.setMood("Happy")
 	GameLogic.player.heldJokes[joke] -= 1
 	nextCharacter()
@@ -50,7 +56,7 @@ func nextCharacter():
 	interactionCount += 1
 	$JokeSelector.visible = false
 	jokeSelector.loadJokes()
-	$CharSwitchTimer.start(0.4)
+	$CharSwitchTimer.start(nextPersonDelay)
 	
 func runFromCharacter():
 	GameLogic.characters[currentCharacter].changeReputation(-runRepLoss)

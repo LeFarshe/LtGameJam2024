@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://6ekgpa4cisno"]
+
+[ext_resource type="AudioStream" uid="uid://dljjo2em2gxse" path="res://Style/Sounds/office-ambience-6322.mp3" id="1_vfeij"]
+[ext_resource type="Script" path="res://Scene/OfficeNoiseLoop.gd" id="2_3i1i6"]
+
+[sub_resource type="GDScript" id="GDScript_tljjo"]
+resource_name = "GlobalSfxCtl"
+script/source = "extends Node
+
+func toggleOfficeNoise(state):
+	$OfficeNoiseLoop.stream_paused = !state
+	if !$OfficeNoiseLoop.playing and state:
+		$OfficeNoiseLoop.play()
+"
+
+[node name="GlobalSfx" type="Node"]
+script = SubResource("GDScript_tljjo")
+
+[node name="OfficeNoiseLoop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_vfeij")
+volume_db = -15.0
+script = ExtResource("2_3i1i6")
+
+[connection signal="finished" from="OfficeNoiseLoop" to="OfficeNoiseLoop" method="_on_finished"]

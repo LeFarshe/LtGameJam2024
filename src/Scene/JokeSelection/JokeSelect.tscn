@@ -62,9 +62,9 @@ func buyJoke():
 	get_tree().call_group(\"ReputationAmount\", \"updateLabel\")
 
 func removeJoke():
-	flip_sound.play()
 	if jokeCount == 0:
 		return
+	flip_sound.play()
 	GameLogic.player.sellJoke(joke)
 	jokeCount -= 1
 	joke_count.text = str(jokeCount)

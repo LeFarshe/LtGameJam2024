@@ -26,7 +26,7 @@ offset_bottom = -97.0
 pivot_offset = Vector2(21, 14)
 theme = ExtResource("3_kupob")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 24
 
 [node name="Traits" type="Control" parent="."]
 anchors_preset = 0

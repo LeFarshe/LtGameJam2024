@@ -25,7 +25,7 @@ func loadJokes():
 	if len(jokes) < 5:
 		jokes.reverse()
 
-func _process(delta):
+func _process(_delta):
 	
 	var spacing = Vector2(dist/(len(jokes)+1), 0)
 	if len(jokes) < 5:
