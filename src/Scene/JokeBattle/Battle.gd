@@ -55,6 +55,7 @@ func tellJoke(joke):
 func nextCharacter():
 	interactionCount += 1
 	$JokeSelector.visible = false
+	$RunButton.disabled = true
 	jokeSelector.loadJokes()
 	$CharSwitchTimer.start(nextPersonDelay)
 	
@@ -68,6 +69,7 @@ func _on_run_button_pressed():
 
 func _on_char_switch_timer_timeout():
 	$JokeSelector.visible = true
+	$RunButton.disabled = false
 	currentCharacter += 1
 	if currentCharacter >= totalCharacters or interactionCount >= totalInteractions:
 		end()
