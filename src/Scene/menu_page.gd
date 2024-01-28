@@ -1,7 +1,7 @@
 extends Control
 
 func _on_story_pressed():
-	pass # Replace with function body.
+	get_tree().change_scene_to_file("res://Scene/story.tscn")
 
 func _on_play_pressed():
 	GameLogic.resetGame()
