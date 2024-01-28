@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://n2m6bnaf5c5p"]
+[gd_scene load_steps=10 format=3 uid="uid://n2m6bnaf5c5p"]
 
 [ext_resource type="Texture2D" uid="uid://cgs0e6pdt4qdd" path="res://Style/Resources/Battle-background.png" id="1_1kcj2"]
 [ext_resource type="Script" path="res://Scene/JokeBattle/Battle.gd" id="1_uasgp"]
@@ -7,6 +7,14 @@
 [ext_resource type="PackedScene" uid="uid://bqe4dfj6s0em4" path="res://Scene/JokeBattle/TraitList.tscn" id="4_78vah"]
 [ext_resource type="Texture2D" uid="uid://3vhtsof2447y" path="res://Style/Resources/main_char.png" id="5_6hrhe"]
 [ext_resource type="PackedScene" uid="uid://db0sq51w2g4fb" path="res://Character/CharacterSprites/CharacterSprite.tscn" id="7_kfbqy"]
+[ext_resource type="AudioStream" uid="uid://cuo7vhg268g4f" path="res://Style/Sounds/page_flip.mp3" id="8_nssbo"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_w7605"]
+playback_mode = 1
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("8_nssbo")
+stream_0/weight = 1.0
 
 [node name="Battle" type="Control" groups=["BattleElement"]]
 layout_mode = 3
@@ -53,4 +61,12 @@ position = Vector2(556, 323)
 position = Vector2(484, 556)
 scale = Vector2(2, 2)
 
+[node name="NoteFlipSound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_w7605")
+volume_db = -10.0
+
+[node name="CharSwitchTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="pressed" from="RunButton" to="." method="_on_run_button_pressed"]
+[connection signal="timeout" from="CharSwitchTimer" to="." method="_on_char_switch_timer_timeout"]
