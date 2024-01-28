@@ -12,7 +12,7 @@ static func getDefaultReaction(joke):
 		JokeTypes.SURREAL:
 			ans = [1.5,3]
 		JokeTypes.SELFDEPRECATING:
-			ans = [1.5,1]
+			ans = [1.5,0.8]
 		JokeTypes.OBSERVATIONAL:
 			ans = [1,0.8]
 		JokeTypes.DARK:
