@@ -1,6 +1,6 @@
 class_name Jokes
 
-enum JokeTypes {PUN, SARCASM, SLAPSTICK, SURREAL, SELFDEPRECATING, OBSERVATIONAL, DARK, BAD}
+enum JokeTypes {DARK, SELFDEPRECATING, SURREAL, SLAPSTICK, OBSERVATIONAL, SARCASM, PUN, BAD}
 
 static func getDefaultReaction(joke):
 	var ans = [1,1]

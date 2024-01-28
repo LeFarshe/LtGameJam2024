@@ -19,8 +19,12 @@ func _init():
 		tempWeights += i[1]
 
 func createCharacter(startPermanentTraits, extraPermAmount, startTemporaryTraits, extraTempAmount):
-	return CharacterLogic.new(startPermanentTraits + generateTraits(extraPermAmount, permTraits, permWeights),
+	var ans = CharacterLogic.new(startPermanentTraits + generateTraits(extraPermAmount, permTraits, permWeights),
 	 startTemporaryTraits + generateTraits(extraTempAmount, tempTraits, tempWeights))
+	if ans.name == "Todd Howard":
+		ans.permTraits.insert(0, TraitFactory.sweetLittleTrait())
+		ans.revealedTraits.insert(0, true)
+	return ans
 	
 func generateTraits(amount, traitList, weights):
 	var currentWeight = weights

@@ -1,0 +1,56 @@
+[gd_scene load_steps=2 format=3 uid="uid://mn6qv5dhfrij"]
+
+[sub_resource type="GDScript" id="GDScript_tpacm"]
+script/source = "extends Node2D
+
+const NOTE = preload(\"res://Scene/JokeBattle/JokeWheelButton.tscn\")
+var jokes = []
+const left = Vector2(-192, 0)
+const right = Vector2(192, 0)
+var dist = left.distance_to(right)
+
+func _ready():
+	loadJokes()
+
+func loadJokes():
+	jokes = []
+	for i in get_children():
+		i.queue_free()
+	var jokeDict = GameLogic.getHeldJokes()
+	for i in jokeDict:
+		for j in range(jokeDict[i]):
+			jokes.append(NOTE.instantiate())
+			add_child(jokes[-1])
+			get_child(-1).setjoke(i)
+	if len(jokes) < 5:
+		jokes.reverse()
+
+func _process(delta):
+	
+	var spacing = Vector2(dist/(len(jokes)+1), 0)
+	if len(jokes) < 5:
+		var pos = left + spacing
+		for i in jokes:
+			i.position = pos
+			pos += spacing
+	else:
+		var mousePos = get_local_mouse_position().clamp(left, right).x
+		for i in range(len(jokes)):
+			var pos = getShiftedPosition(i, mousePos)
+			jokes[i].position = Vector2(pos, 0)
+	
+func getShiftedPosition(positionInList, mousePosition):
+	var x = ((len(jokes)-1)/2.0 - positionInList) / (len(jokes)-1) * 2
+	var a = mousePosition / dist * 2
+	#var result = (1 - abs(x)) *  (x-a) + x
+	var result = (x-a) + x / (len(jokes)-1) / 10
+	result = dist * (result * (len(jokes)-1) / 10 + a /2 - a/ 10) + (len(jokes)-1)*5 - (a +1) * (len(jokes)-1)*5
+	if result < left.x:
+		return left.x
+	elif result > right.x:
+		return right.x
+	return result
+"
+
+[node name="JokeSelector" type="Node2D"]
+script = SubResource("GDScript_tpacm")
